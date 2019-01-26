@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: multi-kubernetes-com-tls
+spec:
+  secretName: multi-kubernetes-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: multi-kubernetes.com
+  dnsNames:
+    - multi-kubernetes.com
+    - www.multi-kubernetes.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - multi-kubernetes.com
+          - www.multi-kubernetes.com
